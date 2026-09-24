@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Everest Base Camp Trek with Damfure Adventure — a 14-day Himalayan journey from Kathmandu to Everest Base Camp, with groups from 1 to 15 people.">
+<title>Everest Base Camp Trek | Damfure Adventure</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Interactive map: Leaflet + OpenStreetMap -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ integrity="sha256-p4NxAoJBhIINfQ3h4b4pGf5X4e8z0ZlFh2Gxq9F5g9E="
+ crossorigin="">
+<style>
+.package-hero{position:relative;min-height:72vh;overflow:hidden;display:flex;align-items:flex-end}
+.package-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.package-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.78))}
+.package-hero-content{position:relative;z-index:2;max-width:900px;padding:110px 24px 70px;color:#fff}
+.package-hero-content .kicker{color:#fff}
+.package-hero-content h1{font-size:clamp(42px,7vw,82px);line-height:.95;margin:12px 0 18px}
+.package-hero-content p{font-size:clamp(17px,2vw,22px);max-width:720px}
+.package-facts{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(0,0,0,.12);margin-top:-1px}
+.package-fact{background:#111;color:#fff;padding:20px 16px;text-align:center}
+.package-fact strong{display:block;font-size:18px;margin-bottom:5px}
+.package-fact span{font-size:13px;opacity:.72}
+.package-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.7fr);gap:40px;align-items:start}
+.day-card{border:1px solid rgba(0,0,0,.10);padding:24px;margin:0 0 16px;background:#fff}
+.day-card h3{margin-top:0}
+.day-meta{font-size:13px;letter-spacing:.04em;text-transform:uppercase;opacity:.68;margin-bottom:10px}
+.photo-strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin:30px 0}
+.photo-strip img{width:100%;height:260px;object-fit:cover;display:block}
+.photo-strip img:first-child{height:360px;grid-row:span 2}
+.map-wrap{background:#fff;border:1px solid rgba(0,0,0,.1);padding:12px}
+#ebc-map{height:540px;width:100%}
+.map-note{font-size:13px;opacity:.7;margin:12px 4px 0}
+.side-box{border:1px solid rgba(0,0,0,.12);padding:24px;background:#fff;margin-bottom:18px}
+.side-box h3{margin-top:0}
+.checklist{list-style:none;padding:0;margin:0}
+.checklist li{padding:8px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.checklist li:last-child{border-bottom:0}
+.inquiry-panel{background:#111;color:#fff;padding:34px}
+.inquiry-panel h2{margin-top:0}
+.inquiry-panel label{display:block;margin:14px 0 6px;font-size:13px}
+.inquiry-panel input,.inquiry-panel select,.inquiry-panel textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid rgba(255,255,255,.25);background:#fff;color:#111;border-radius:2px}
+.inquiry-panel textarea{min-height:100px}
+.inquiry-panel button{margin-top:18px;width:100%;padding:14px;border:0;cursor:pointer;font-weight:700}
+.gallery-large{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.gallery-large img{width:100%;height:360px;object-fit:cover}
+@media(max-width:850px){
+ .package-facts{grid-template-columns:repeat(2,1fr)}
+ .package-layout{grid-template-columns:1fr}
+ .photo-strip{grid-template-columns:1fr 1fr}
+ .photo-strip img:first-child{grid-column:span 2;grid-row:auto;height:330px}
+ #ebc-map{height:420px}
+}
+@media(max-width:560px){
+ .package-facts{grid-template-columns:1fr 1fr}
+ .photo-strip,.gallery-large{grid-template-columns:1fr}
+ .photo-strip img:first-child{grid-column:auto}
+ .gallery-large img{height:280px}
+}
+</style>
+</head>
+
+<body>
+<header class="nav">
+  <div class="navin">
+    <a href="index.html"><img class="logo" src="assets/assets/logo.jpg" alt="Damfure Adventure logo"></a>
+    <button class="menu">MENU</button>
+    <nav class="navlinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#adventures">Adventures</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="index.html#impact">Our Impact</a>
+      <a href="index.html#directors">Directors</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="package-hero">
+  <img src="ebc-hero.jpg" alt="Everest region mountain landscape">
+  <div class="package-hero-content wrap">
+    <div class="kicker">DAMFURE ADVENTURE • EVEREST REGION</div>
+    <h1>Everest Base Camp Trek</h1>
+    <p>Walk into the heart of the Khumbu — Sherpa villages, Buddhist monasteries, glacier valleys and the legendary trail to Everest Base Camp.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#inquiry">INQUIRE NOW</a>
+      <a class="btn" href="https://wa.me/9779745307830?text=Namaste%20Damfure%20Adventure%2C%20I%20am%20interested%20in%20the%20Everest%20Base%20Camp%20Trek." target="_blank" rel="noopener">WHATSAPP US</a>
+    </div>
+  </div>
+</section>
+
+<div class="package-facts">
+  <div class="package-fact"><strong>14 Days</strong><span>Classic itinerary</span></div>
+  <div class="package-fact"><strong>5,364 m</strong><span>Everest Base Camp</span></div>
+  <div class="package-fact"><strong>5,545 m</strong><span>Kala Patthar</span></div>
+  <div class="package-fact"><strong>1–15</strong><span>Private/group size</span></div>
+  <div class="package-fact"><strong>Challenging</strong><span>High-altitude trek</span></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="package-layout">
+
+      <main>
+        <div class="kicker">THE JOURNEY</div>
+        <h2>From Kathmandu to the foot of Everest.</h2>
+        <p class="lead">A carefully paced Himalayan journey designed around acclimatization, mountain scenery, local culture and time in the Khumbu. We welcome solo trekkers and groups from 1 to 15 people.</p>
+
+        <div class="photo-strip">
+          <img src="everest-view.jpg" alt="Everest and surrounding peaks">
+          <img src="monastery-everest.jpg" alt="Himalayan monastery with mountain view">
+          <img src="khumbu-glacier.jpg" alt="Khumbu glacier and Himalayan mountains">
+        </div>
+
+        <div class="kicker">14-DAY ITINERARY</div>
+
+        <article class="day-card">
+          <div class="day-meta">Day 01 • Kathmandu</div>
+          <h3>Arrival in Kathmandu</h3>
+          <p>Airport pickup, hotel check-in, trek briefing and final equipment preparation with the Damfure Adventure team.</p>
+          <strong>Overnight:</strong> Kathmandu
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 02 • Lukla → Phakding</div>
+          <h3>Fly to Lukla and trek to Phakding</h3>
+          <p>Take the mountain flight to Lukla and begin walking through the Dudh Koshi valley toward Phakding.</p>
+          <strong>Altitude:</strong> Lukla 2,860 m • Phakding 2,610 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 03 • Phakding → Namche</div>
+          <h3>Enter the Khumbu and reach Namche Bazaar</h3>
+          <p>Cross suspension bridges and follow the Dudh Koshi toward Namche Bazaar, the main trading centre of the Everest region.</p>
+          <strong>Altitude:</strong> Namche Bazaar ~3,440 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 04 • Namche</div>
+          <h3>Acclimatization day</h3>
+          <p>Rest and explore around Namche. An optional acclimatization hike can visit the Syangboche, Khumjung and Kunde area.</p>
+          <strong>Overnight:</strong> Namche Bazaar
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 05 • Namche → Tengboche</div>
+          <h3>Trek to Tengboche Monastery</h3>
+          <p>Walk through forests and open mountain viewpoints toward Tengboche, with views of Ama Dablam and other Himalayan peaks.</p>
+          <strong>Altitude:</strong> ~3,860 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 06 • Tengboche → Dingboche</div>
+          <h3>Enter the high Himalayan valley</h3>
+          <p>Continue through Pangboche and the Imja Valley toward Dingboche, where the landscape becomes increasingly alpine.</p>
+          <strong>Altitude:</strong> ~4,410 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 07 • Dingboche</div>
+          <h3>Acclimatization day</h3>
+          <p>Take a gradual acclimatization hike toward the Nangkartshang viewpoint or explore the surrounding valley, then return to Dingboche.</p>
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 08 • Dingboche → Lobuche</div>
+          <h3>Climb toward Lobuche</h3>
+          <p>Pass through the high-altitude landscape toward the Khumbu Glacier and continue to Lobuche.</p>
+          <strong>Altitude:</strong> ~4,940 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 09 • Lobuche → Gorak Shep → Everest Base Camp</div>
+          <h3>Reach Everest Base Camp</h3>
+          <p>The major objective of the trek. Walk to Gorak Shep and continue across the high Himalayan terrain to Everest Base Camp before returning to Gorak Shep.</p>
+          <strong>Everest Base Camp:</strong> ~5,364 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 10 • Kala Patthar → Pheriche</div>
+          <h3>Sunrise at Kala Patthar and descend</h3>
+          <p>Early morning hike toward Kala Patthar for panoramic Everest-region views, followed by a descent toward Pheriche.</p>
+          <strong>Kala Patthar:</strong> ~5,545 m
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 11 • Pheriche → Namche</div>
+          <h3>Return through the Khumbu</h3>
+          <p>Descend through Pangboche and Tengboche and continue toward Namche Bazaar.</p>
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 12 • Namche → Lukla</div>
+          <h3>Walk back to Lukla</h3>
+          <p>Follow the Dudh Koshi valley toward Lukla and celebrate the completion of the trekking route with the team.</p>
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 13 • Lukla → Kathmandu</div>
+          <h3>Fly back to Kathmandu</h3>
+          <p>Return to Kathmandu by mountain flight. Flight schedules may change because of weather and operational conditions.</p>
+        </article>
+
+        <article class="day-card">
+          <div class="day-meta">Day 14 • Kathmandu</div>
+          <h3>Departure from Nepal</h3>
+          <p>Airport transfer according to your international flight schedule. Namaste and farewell from Damfure Adventure.</p>
+        </article>
+
+        <div class="kicker" style="margin-top:50px">MAP ITINERARY</div>
+        <h2>Follow the Everest trail.</h2>
+        <div class="map-wrap">
+          <div id="ebc-map"></div>
+          <p class="map-note">Interactive route map. The line represents the planned trekking sequence; exact daily trail conditions can vary.</p>
+        </div>
+
+        <div class="gallery-large" style="margin-top:35px">
+          <img src="ebc-hero.jpg" alt="Everest region">
+          <img src="everest-view.jpg" alt="Everest and surrounding peaks">
+          <img src="monastery-everest.jpg" alt="Monastery in the Everest region">
+          <img src="khumbu-glacier.jpg" alt="Khumbu glacier">
+        </div>
+      </main>
+
+      <aside>
+        <div class="side-box">
+          <h3>Trip at a glance</h3>
+          <ul class="checklist">
+            <li><strong>Duration:</strong> 14 days</li>
+            <li><strong>Group:</strong> 1–15 people</li>
+            <li><strong>Region:</strong> Khumbu / Everest</li>
+            <li><strong>EBC:</strong> ~5,364 m</li>
+            <li><strong>Kala Patthar:</strong> ~5,545 m</li>
+            <li><strong>Difficulty:</strong> Challenging</li>
+            <li><strong>Style:</strong> Teahouse trek</li>
+            <li><strong>Price:</strong> Request a quote</li>
+          </ul>
+        </div>
+
+        <div class="side-box">
+          <h3>What's included?</h3>
+          <ul class="checklist">
+            <li>Airport transfers in Kathmandu</li>
+            <li>Accommodation as specified in the final itinerary</li>
+            <li>Experienced trekking guide</li>
+            <li>Required trekking/park permits</li>
+            <li>Domestic flight arrangements included in the confirmed package</li>
+            <li>Standard trekking support</li>
+          </ul>
+          <p style="font-size:13px;opacity:.7">Exact inclusions and exclusions are confirmed in your quotation.</p>
+        </div>
+
+        <div class="side-box">
+          <h3>Not normally included</h3>
+          <ul class="checklist">
+            <li>International airfare</li>
+            <li>Travel and rescue insurance</li>
+            <li>Personal expenses</li>
+            <li>Personal trekking equipment</li>
+            <li>Tips and gratuities</li>
+            <li>Costs caused by delays or itinerary changes outside our control</li>
+          </ul>
+        </div>
+
+        <div class="side-box">
+          <h3>Need a private trip?</h3>
+          <p>Tell us your dates and preferred group size. We can tailor the itinerary and services for your group.</p>
+          <a class="btn primary" href="#inquiry">REQUEST A QUOTE</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="inquiry">
+  <div class="wrap">
+    <div class="inquiry-panel">
+      <div class="kicker">EVEREST BASE CAMP TREK</div>
+      <h2>Plan your journey with Damfure.</h2>
+      <p>Send your details and we'll contact you with availability, pricing and a tailored proposal.</p>
+
+      <form id="ebcInquiryForm">
+        <label for="ebcName">Name</label>
+        <input id="ebcName" required>
+
+        <label for="ebcContact">Email / WhatsApp</label>
+        <input id="ebcContact" required>
+
+        <label for="ebcGroup">Number of travelers</label>
+        <select id="ebcGroup" required>
+          <option value="">Select group size</option>
+          <option>1 person</option><option>2 people</option><option>3 people</option>
+          <option>4 people</option><option>5 people</option><option>6 people</option>
+          <option>7 people</option><option>8 people</option><option>9 people</option>
+          <option>10 people</option><option>11 people</option><option>12 people</option>
+          <option>13 people</option><option>14 people</option><option>15 people</option>
+        </select>
+
+        <label for="ebcDate">Preferred trek date</label>
+        <input id="ebcDate" type="date">
+
+        <label for="ebcMessage">Message</label>
+        <textarea id="ebcMessage" placeholder="Tell us your preferred dates, nationality, experience or any special requirements."></textarea>
+
+        <button type="submit">SEND INQUIRY ON WHATSAPP</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footerin">
+    <div>© 2026 Damfure Adventure</div>
+    <div>Adventure • Conservation • Stories • Community</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+ crossorigin=""></script>
+
+<script>
+/* Everest Base Camp route map */
+const route = [
+  {name:"Kathmandu", lat:27.7172, lng:85.3240, day:"Day 01"},
+  {name:"Lukla", lat:27.6869, lng:86.7290, day:"Day 02"},
+  {name:"Phakding", lat:27.7385, lng:86.7120, day:"Day 02"},
+  {name:"Namche Bazaar", lat:27.8053, lng:86.7100, day:"Day 03–04"},
+  {name:"Tengboche", lat:27.8370, lng:86.7620, day:"Day 05"},
+  {name:"Dingboche", lat:27.8920, lng:86.8310, day:"Day 06–07"},
+  {name:"Lobuche", lat:27.9630, lng:86.8090, day:"Day 08"},
+  {name:"Gorak Shep", lat:28.0026, lng:86.8528, day:"Day 09"},
+  {name:"Everest Base Camp", lat:28.0025, lng:86.8677, day:"Day 09"},
+  {name:"Kala Patthar", lat:27.9881, lng:86.8285, day:"Day 10"},
+  {name:"Pheriche", lat:27.8950, lng:86.8200, day:"Day 10–11"},
+  {name:"Namche Bazaar", lat:27.8053, lng:86.7100, day:"Day 11"},
+  {name:"Lukla", lat:27.6869, lng:86.7290, day:"Day 12"},
+  {name:"Kathmandu", lat:27.7172, lng:85.3240, day:"Day 13"}
+];
+
+const map = L.map("ebc-map").setView([27.88, 86.78], 9);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 18,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const latlngs = [];
+route.forEach((p, i) => {
+  latlngs.push([p.lat, p.lng]);
+  L.marker([p.lat, p.lng]).addTo(map)
+    .bindPopup("<strong>" + p.name + "</strong><br>" + p.day);
+});
+L.polyline(latlngs, {weight:4}).addTo(map);
+map.fitBounds(L.latLngBounds(latlngs), {padding:[25,25]});
+
+/* WhatsApp inquiry */
+document.getElementById("ebcInquiryForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("ebcName").value.trim();
+  const contact = document.getElementById("ebcContact").value.trim();
+  const group = document.getElementById("ebcGroup").value;
+  const date = document.getElementById("ebcDate").value || "Not specified";
+  const message = document.getElementById("ebcMessage").value.trim() || "No additional message.";
+
+  const text =
+`Namaste Damfure Adventure! I would like to inquire about the Everest Base Camp Trek.
+
+Name: ${name}
+Email / WhatsApp: ${contact}
+Travelers: ${group}
+Preferred date: ${date}
+
+Message:
+${message}`;
+
+  window.open("https://wa.me/9779745307830?text=" + encodeURIComponent(text), "_blank");
+});
+</script>
+</body>
+</html>
